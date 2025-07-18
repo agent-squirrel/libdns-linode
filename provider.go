@@ -51,11 +51,11 @@ func (p *Provider) AppendRecords(ctx context.Context, zone string, records []lib
 	}
 	addedRecords := make([]libdns.Record, 0, len(records))
 	for _, record := range records {
-		addedRecord, err := p.createDomainRecord(ctx, zone, domainID, &record)
+		addedRecord, err := p.createDomainRecord(ctx, zone, domainID, record)
 		if err != nil {
 			return nil, err
 		}
-		addedRecords = append(addedRecords, *addedRecord)
+		addedRecords = append(addedRecords, addedRecord)
 	}
 	return addedRecords, nil
 }
@@ -72,11 +72,11 @@ func (p *Provider) SetRecords(ctx context.Context, zone string, records []libdns
 	}
 	updatedRecords := make([]libdns.Record, 0, len(records))
 	for _, record := range records {
-		updatedRecord, err := p.createOrUpdateDomainRecord(ctx, zone, domainID, &record)
+		updatedRecord, err := p.createOrUpdateDomainRecord(ctx, zone, domainID, record)
 		if err != nil {
 			return nil, err
 		}
-		updatedRecords = append(updatedRecords, *updatedRecord)
+		updatedRecords = append(updatedRecords, updatedRecord)
 	}
 	return updatedRecords, nil
 }
@@ -92,7 +92,7 @@ func (p *Provider) DeleteRecords(ctx context.Context, zone string, records []lib
 	}
 	deletedRecords := make([]libdns.Record, 0, len(records))
 	for _, record := range records {
-		err := p.deleteDomainRecord(ctx, domainID, &record)
+		err := p.deleteDomainRecord(ctx, domainID, record)
 		if err != nil {
 			return nil, err
 		}

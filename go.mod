@@ -3,7 +3,7 @@ module github.com/libdns/linode
 go 1.20
 
 require (
-	github.com/libdns/libdns v0.2.1
+	github.com/libdns/libdns v1.1.0
 	github.com/linode/linodego v1.25.0
 )
 
